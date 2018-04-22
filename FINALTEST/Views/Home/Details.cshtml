@@ -1,0 +1,59 @@
+﻿@model FINALTEST.Models.TobeSend
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Home = "active";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TobeSend</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactDetail.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactDetail.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warning.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warning.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warning.Detail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warning.Detail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

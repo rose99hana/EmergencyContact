@@ -1,0 +1,134 @@
+﻿@model FINALTEST.Models.TobeSend
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Home = "active";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TobeSend</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WarningID, "Please choose a warning to send: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("WarningID", null, htmlAttributes: new { @class = "form-control aaa" })
+                @Html.ValidationMessageFor(model => model.WarningID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Please choose time to send: </label>
+            <label class="myradio"><input type="radio" name="TimeOption" value="notset" id="notset" onclick="TimeSelectionChanged()">  Send Immediately</label>
+            <label class="myradio"><input type="radio" name="TimeOption" value="set" id="set" onclick="TimeSelectionChanged()" checked>  Set DateTime to Send</label>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Set Date: </label>
+            <div class="col-md-10">
+                <input type="text" name="SendDate" id="dateinput" value="@ViewBag.DateValue" class="form-control"/>
+                <p>Example: 2018-02-15 (yyyy-mm-dd)</p>
+                <p class="text-danger">@ViewBag.DateError</p>
+                @*@Html.EditorFor(model => model.SendTime, new { htmlAttributes = new { @class = "form-control", type = "datetime" } })
+                @Html.ValidationMessageFor(model => model.SendTime, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Set Time: </label>
+            <div class="col-md-10">
+                <input type="text" name="SendTime" id="timeinput" value="@ViewBag.TimeValue" class="form-control"/>
+                <p>Example: 13:50:34 (hh:mm:ss)</p>
+                <p class="text-danger">@ViewBag.TimeError</p>
+                @*@Html.EditorFor(model => model.SendTime, new { htmlAttributes = new { @class = "form-control", type = "datetime" } })
+                @Html.ValidationMessageFor(model => model.SendTime, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <p class="text-danger">@ViewBag.DateTimeError</p>
+                <input type="submit" value="Send warning message" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Delete All", "DeleteAll", new { id = "All" })
+</p>
+
+
+<table class="table" style="margin-top: 20px;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactDetail.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warning.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SendTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SendStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.tobeSends)
+    {
+        <tr>
+            <td>
+                @item.ContactDetail.Name
+            </td>
+            <td>
+                @item.Warning.Title
+            </td>
+            <td>
+                @item.SendTime
+            </td>
+            <td>
+                @item.SendStatus
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    function TimeSelectionChanged() {
+        var x = document.getElementById("notset");
+        var y = document.getElementById("set");
+        if (x.checked) {
+            document.getElementById("dateinput").disabled = true;
+            document.getElementById("timeinput").disabled = true;
+        }
+        if (y.checked) {
+            document.getElementById("dateinput").disabled = false;
+            document.getElementById("timeinput").disabled = false;
+        }
+    }
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

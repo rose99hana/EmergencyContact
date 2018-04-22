@@ -1,0 +1,65 @@
+﻿@model FINALTEST.Models.SentWarning
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.SentWarning = "active";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SentWarning</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactDetail.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactDetail.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warning.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warning.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MailSent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailSent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SMSSent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SMSSent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SentTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SentTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

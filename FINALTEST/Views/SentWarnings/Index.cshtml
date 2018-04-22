@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FINALTEST.Models.SentWarning>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.SentWarning = "active";
+}
+
+<h2>災害警戒送信済み表</h2>
+
+<p>
+    @Html.ActionLink("Delete All", "DeleteAll", new { id="All" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactDetail.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warning.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MailSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SMSSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SentTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactDetail.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warning.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MailSent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SMSSent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SentTime)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
